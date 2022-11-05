@@ -1,5 +1,5 @@
 class Solution:
-    def maxLength(self, arr: List[str]) -> int:
+    def maxLength(self, arr: list[str]) -> int:
         charSet = set()
         
         def overlap(charSet, s):
