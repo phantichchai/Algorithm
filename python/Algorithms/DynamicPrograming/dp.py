@@ -27,6 +27,15 @@ class Solution:
         
         return rec(0)
 
+    # 70. Climbing Stairs
+    def climbStairs(self, n: int) -> int:
+        # one mean the possible distinct ways when climp one step from current stair
+        # two mean the possible distinct ways when climp two step from current stair
+        one, two = 1, 1
+        for _ in range(n):
+            one, two = one + two, one
+        return one
+
 if __name__ == "__main__":
     solution = Solution()
     print(solution.jobScheduling([1,2,3,3], [3,4,5,6],[50,10,40,70]))
