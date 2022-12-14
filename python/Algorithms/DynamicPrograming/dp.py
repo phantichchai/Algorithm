@@ -36,6 +36,21 @@ class Solution:
             one, two = one + two, one
         return one
 
+    # 198. House Robber
+    def rob(self, nums: List[int]) -> int:
+        # declare the 'rob1' and 'rob2' for contain a amount of money than you can get in each plan with 0
+        rob1, rob2 = 0, 0
+
+        # iterate thourgh in the list 'nums' 
+        for num in nums:
+            # find maximum between the amount of money that you rob1 path with the current house and rob2 path
+            temp = max(rob1+num, rob2)
+            # store the rob2 path in rob1 path mean the previous maximum the amount of money you can get in this path
+            rob1 = rob2
+            # store the new maximum path to the rob2
+            rob2 = temp
+        return rob2
+
 if __name__ == "__main__":
     solution = Solution()
     print(solution.jobScheduling([1,2,3,3], [3,4,5,6],[50,10,40,70]))
