@@ -59,3 +59,37 @@ class MaxPathSum:
         
         dfs(root)
         return self.res
+
+class ValidPath:
+    # 1971. Find if Path Exists in Graph
+    # Time complexity: O(V+E)
+    # Space complexity: O(V+E)
+    # where V mean number of vertices and E mean number of edges
+    def iterative(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+        if n < 2:
+            return True
+        # Initialize the variable for construct graph structure
+        graph = [[] for i in range(n)]
+        # Iterate thought 'edges' for construct add the edge for each node by create edge for 2 vertice
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+
+        # create the 'visited' list for contain the node that visited 
+        visited = [False] * (n+1)
+        # create the stack for start the dfs traversal graph by start with source
+        stack = [source]
+        # Loop until stack not empty
+        while stack:
+            # Iterate thought the edge in the top of stack vertice
+            for vertice in graph[stack.pop()]:
+                # check if current vertice not visit then change this to visited and append this vertice into stack
+                if visited[vertice] == False:
+                    visited[vertice] = True
+                    stack.append(vertice)
+
+                    # current vertice is equal to destination then this path is exist in grapth
+                    if vertice == destination:
+                        return True
+        # Iterate entire graph and not found that current vertice equal to destination vertice then this path isn't exist in graph
+        return False
